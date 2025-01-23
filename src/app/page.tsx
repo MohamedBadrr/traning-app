@@ -1,7 +1,5 @@
 "use client";
 import { useState } from "react";
-import emailjs from "emailjs-com";
-
 type SellForm = {
   name: string;
   businessName: string;
@@ -19,6 +17,15 @@ const Page = () => {
   // Calculate date 6 weeks from today
   const sixWeeksFromNow = new Date(today);
   sixWeeksFromNow.setDate(today.getDate() + 42);
+  // calculate Time GMT +5
+  const convertToGMT5 = (localTime: string, localDate: string) => {
+    const localDateTime = new Date(`${localDate}T${localTime}:00`);
+    const offset = localDateTime.getTimezoneOffset(); 
+    const gmt5Offset = 5 * 60; 
+    const totalOffset = offset + gmt5Offset;  
+    const gmt5Date = new Date(localDateTime.getTime() + totalOffset * 60000);
+    return gmt5Date.toTimeString().slice(0, 5); 
+  };
 
   const [formData, setFormData] = useState<SellForm>({
     name: "",
@@ -31,8 +38,8 @@ const Page = () => {
   const [showAlert, setShowAlert] = useState(false);
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic here
-    console.log("Form submitted:", formData);
+    const newTime = convertToGMT5(formData.time , formData.date)
+    setFormData({...formData,time:newTime})
     setFormData({
       businessName: "",
       date: "",
@@ -42,30 +49,6 @@ const Page = () => {
       whopUrl: "",
     });
     setShowAlert(true);
-    {
-      /* service_m3g8fwi */
-    }
-    {
-      /* template_d2vrw9s */
-    }
-
-    emailjs
-      .send(
-        "service_m3g8fwi", // Replace with your EmailJS Service ID
-        "template_d2vrw9s", // Replace with your EmailJS Template ID
-        formData,
-        "daYCIg_Fj27FURM5e" // Replace with your EmailJS User ID (or public key)
-      )
-      .then(
-        (response) => {
-          console.log("SUCCESS!", response.status, response.text);
-          alert("Message sent successfully!");
-        },
-        (error) => {
-          console.error("FAILED...", error);
-          alert("Failed to send message.");
-        }
-      );
   };
 
   return (
