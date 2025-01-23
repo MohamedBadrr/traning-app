@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import emailjs from 'emailjs-com'
+import emailjs from "emailjs-com";
 
 type SellForm = {
   name: string;
@@ -41,25 +41,29 @@ const Page = () => {
       time: "",
       whopUrl: "",
     });
-    setShowAlert(true)
-            {/* service_m3g8fwi */}
-            {/* template_d2vrw9s */}
+    setShowAlert(true);
+    {
+      /* service_m3g8fwi */
+    }
+    {
+      /* template_d2vrw9s */
+    }
 
     emailjs
       .send(
-        'service_m3g8fwi', // Replace with your EmailJS Service ID
-        'template_d2vrw9s', // Replace with your EmailJS Template ID
+        "service_m3g8fwi", // Replace with your EmailJS Service ID
+        "template_d2vrw9s", // Replace with your EmailJS Template ID
         formData,
-        'daYCIg_Fj27FURM5e' // Replace with your EmailJS User ID (or public key)
+        "daYCIg_Fj27FURM5e" // Replace with your EmailJS User ID (or public key)
       )
       .then(
         (response) => {
-          console.log('SUCCESS!', response.status, response.text);
-          alert('Message sent successfully!');
+          console.log("SUCCESS!", response.status, response.text);
+          alert("Message sent successfully!");
         },
         (error) => {
-          console.error('FAILED...', error);
-          alert('Failed to send message.');
+          console.error("FAILED...", error);
+          alert("Failed to send message.");
         }
       );
   };
@@ -67,68 +71,68 @@ const Page = () => {
   return (
     <div className="max-h-screen  py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden">
-        <div className="px-8 py-6">
-          <a href="/admin">afadf</a>
+        <div className="px-8 py-6 border-[1px] border-gray-200 rounded-xl">
           <h2 className="text-2xl font-bold text-gray-900 text-center mb-8">
             Booking Form
-          </h2>
+          </h2> 
           {showAlert && (
             <h1 className="text-center w-full bg-green-300 py-[5px] rounded-[5px] mb-[15px]">
-              Thanks for Booking.. we will receive it{" "   }
+              Thanks for Booking.. we will receive it{" "}
             </h1>
           )}
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6 ">
             {/* Name Field */}
-            <div className="relative">
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Name
-              </label>
+
+            <div className="flex gap-[20px]">
               <div className="relative">
-                <div className="absolute inset-y-0 left-0  flex items-center pointer-events-none">
-                  {/* <User className="h-5 w-5 text-gray-400" /> */}
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Name
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0  flex items-center pointer-events-none">
+                    {/* <User className="h-5 w-5 text-gray-400" /> */}
+                  </div>
+                  <input
+                    type="text"
+                    id="name"
+                    required
+                    className="block w-full pl-4 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                    placeholder="Enter Your Name"
+                    value={formData.name}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
+                  />
                 </div>
-                <input
-                  type="text"
-                  id="name"
-                  required
-                  className="block w-full pl-4 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                  placeholder="John Doe"
-                  value={formData.name}
-                  onChange={(e) =>
-                    setFormData({ ...formData, name: e.target.value })
-                  }
-                />
               </div>
-            </div>
 
-
-            
-            {/* Business Name Field */}
-            <div>
-              <label
-                htmlFor="businessName"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Business Name
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  {/* <Building className="h-5 w-5 text-gray-400" /> */}
+              {/* Business Name Field */}
+              <div >
+                <label
+                  htmlFor="businessName"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Business Name
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    {/* <Building className="h-5 w-5 text-gray-400" /> */}
+                  </div>
+                  <input
+                    type="text"
+                    id="businessName"
+                    required
+                    className="block w-full pl-4 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                    placeholder="Company Inc."
+                    value={formData.businessName}
+                    onChange={(e) =>
+                      setFormData({ ...formData, businessName: e.target.value })
+                    }
+                  />
                 </div>
-                <input
-                  type="text"
-                  id="businessName"
-                  required
-                  className="block w-full pl-4 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                  placeholder="Company Inc."
-                  value={formData.businessName}
-                  onChange={(e) =>
-                    setFormData({ ...formData, businessName: e.target.value })
-                  }
-                />
               </div>
             </div>
 
@@ -185,6 +189,8 @@ const Page = () => {
               </div>
             </div>
 
+
+
             {/* Date Field */}
             <div>
               <label
@@ -239,6 +245,7 @@ const Page = () => {
                 All times are in GMT+5
               </p>
             </div>
+
 
             <button
               type="submit"
