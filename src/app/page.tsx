@@ -20,11 +20,11 @@ const Page = () => {
   // calculate Time GMT +5
   const convertToGMT5 = (localTime: string, localDate: string) => {
     const localDateTime = new Date(`${localDate}T${localTime}:00`);
-    const offset = localDateTime.getTimezoneOffset(); 
-    const gmt5Offset = 5 * 60; 
-    const totalOffset = offset + gmt5Offset;  
+    const offset = localDateTime.getTimezoneOffset();
+    const gmt5Offset = 5 * 60;
+    const totalOffset = offset + gmt5Offset;
     const gmt5Date = new Date(localDateTime.getTime() + totalOffset * 60000);
-    return gmt5Date.toTimeString().slice(0, 5); 
+    return gmt5Date.toTimeString().slice(0, 5);
   };
 
   const [formData, setFormData] = useState<SellForm>({
@@ -38,8 +38,8 @@ const Page = () => {
   const [showAlert, setShowAlert] = useState(false);
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const newTime = convertToGMT5(formData.time , formData.date)
-    setFormData({...formData,time:newTime})
+    const newTime = convertToGMT5(formData.time, formData.date);
+    setFormData({ ...formData, time: newTime });
     setFormData({
       businessName: "",
       date: "",
@@ -52,12 +52,12 @@ const Page = () => {
   };
 
   return (
-    <div className="max-h-screen  py-12 px-4 sm:px-6 lg:px-8">
+    <div className="h-screen  py-12 px-4 sm:px-6 lg:px-8 bg-white flex items-center justify-center">
       <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden">
         <div className="px-8 py-6 border-[1px] border-gray-200 rounded-xl">
           <h2 className="text-2xl font-bold text-gray-900 text-center mb-8">
             Booking Form
-          </h2> 
+          </h2>
           {showAlert && (
             <h1 className="text-center w-full bg-green-300 py-[5px] rounded-[5px] mb-[15px]">
               Thanks for Booking.. we will receive it{" "}
@@ -93,7 +93,7 @@ const Page = () => {
               </div>
 
               {/* Business Name Field */}
-              <div >
+              <div>
                 <label
                   htmlFor="businessName"
                   className="block text-sm font-medium text-gray-700 mb-1"
@@ -172,8 +172,6 @@ const Page = () => {
               </div>
             </div>
 
-
-
             {/* Date Field */}
             <div>
               <label
@@ -192,7 +190,7 @@ const Page = () => {
                   required
                   min={formatDate(today)}
                   max={formatDate(sixWeeksFromNow)}
-                  className="block w-full pl-4 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                  className="block w-full pl-4 pr-3 py-2 border text-black border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                   value={formData.date}
                   onChange={(e) =>
                     setFormData({ ...formData, date: e.target.value })
@@ -217,7 +215,7 @@ const Page = () => {
                   type="time"
                   id="time"
                   required
-                  className="block w-full pl-4 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                  className="block w-full pl-4 pr-3 py-2 border text-black  border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                   value={formData.time}
                   onChange={(e) =>
                     setFormData({ ...formData, time: e.target.value })
@@ -228,7 +226,6 @@ const Page = () => {
                 All times are in GMT+5
               </p>
             </div>
-
 
             <button
               type="submit"
